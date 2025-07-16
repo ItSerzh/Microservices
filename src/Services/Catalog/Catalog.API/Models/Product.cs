@@ -6,7 +6,7 @@ public class Product
 
     public string Name { get; set; } = default!;
 
-    public List<string> Catageory { get; set; } = [];
+    public List<string> Catageories { get; set; } = [];
 
     public string Description { get; set; } = default!;
 
