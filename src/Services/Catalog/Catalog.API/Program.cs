@@ -17,6 +17,7 @@ builder.Services.AddMediatR(config =>
 builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
+    opts.DisableNpgsqlLogging = true;
 }).UseLightweightSessions();
 
 var app = builder.Build();
