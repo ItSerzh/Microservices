@@ -1,18 +1,24 @@
 using BuildingBlocks;
+using BuildingBlocks.Behaviors;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // services here
-builder.Services.AddCarter(new DependencyContextAssemblyCatalog([
-    Assembly.GetExecutingAssembly(),                       // Your main app
-    typeof(IBuildingBlocksMarker).Assembly                 // External module assembly
-]));
+var currentAssembly = Assembly.GetExecutingAssembly();
+var dependencyCatalog = new DependencyContextAssemblyCatalog([
+    currentAssembly,
+    typeof(IBuildingBlocksMarker).Assembly]);
+
+builder.Services.AddCarter(dependencyCatalog);
 
 builder.Services.AddMediatR(config =>
 {
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    config.RegisterServicesFromAssembly(currentAssembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
 });
+
+builder.Services.AddValidatorsFromAssembly(currentAssembly);
 
 builder.Services.AddMarten(opts =>
 {
