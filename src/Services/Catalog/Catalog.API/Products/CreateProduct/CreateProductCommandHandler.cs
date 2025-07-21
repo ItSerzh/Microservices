@@ -12,7 +12,7 @@ internal class CreateProductCommandHandler(IDocumentSession documentSession)
         var product = new Product
         {
             Name = command.Name,
-            Catageories = command.Categories,
+            Categeories = command.Categories,
             Description = command.Description,
             ImageFile = command.ImageFile,
             Price = command.Price

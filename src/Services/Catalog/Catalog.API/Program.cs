@@ -23,6 +23,11 @@ builder.Services.AddMarten(opts =>
     opts.DisableNpgsqlLogging = true;
 }).UseLightweightSessions();
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
+
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 var app = builder.Build();

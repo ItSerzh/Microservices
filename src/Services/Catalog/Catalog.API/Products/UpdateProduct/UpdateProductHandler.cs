@@ -19,7 +19,7 @@ internal class UpdateProductHandler(IDocumentSession documentSession)
 
         product.Name = command.Name;
         product.Description = command.Description;
-        product.Catageories = command.Categories;
+        product.Categeories = command.Categories;
         product.Description = command.Description;
         product.Price = command.Price;
 

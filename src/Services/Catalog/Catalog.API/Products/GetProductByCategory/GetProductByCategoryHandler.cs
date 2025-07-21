@@ -11,7 +11,7 @@ internal class GetProductByCategoryHandler(IDocumentSession documentSession)
     public async Task<GetProductByCategoryResult> Handle(GetProductsByCategoryQuery query, CancellationToken cancellationToken)
     {
         var products = await documentSession.Query<Product>()
-            .Where(p => p.Catageories.Contains(query.Category))
+            .Where(p => p.Categeories.Contains(query.Category))
             .ToListAsync(cancellationToken);
 
         return new GetProductByCategoryResult(products);
