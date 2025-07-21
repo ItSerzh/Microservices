@@ -23,7 +23,7 @@ public class ValidationBehavior<TRequest, TResponse>
             throw new ValidationException(errors);
         }
 
-        return await next();
+        return await next(cancellationToken);
     }
 }
 
