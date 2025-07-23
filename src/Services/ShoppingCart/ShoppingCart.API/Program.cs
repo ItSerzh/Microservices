@@ -24,9 +24,13 @@ builder.Services.AddMarten(opts =>
 
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 //  HTTP pipeline here
 app.MapCarter();
+
+app.UseExceptionHandler(options => { });
 
 app.Run();
