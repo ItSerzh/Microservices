@@ -9,7 +9,19 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres-catalog:/var/lib/postgresql/data/      
+      - postgres-catalog:/var/lib/postgresql/data/
+  
+  shopping-cart.db:
+    container_name: shopping-cart.db
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=ShoppingCartDb
+    restart: always
+    ports:
+        - "5433:5432"
+    volumes:
+        - postgres-shopping-cart:/var/lib/postgresql/data/      
 
   catalog.api:
     environment:

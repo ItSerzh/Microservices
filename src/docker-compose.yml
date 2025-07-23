@@ -1,6 +1,9 @@
 services:
   catalog.db:
     image: postgres
+
+  shopping-cart.db:
+    image: postgres
     
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -10,4 +13,5 @@ services:
 
 volumes:
   postgres-catalog:
+  postgres-shopping-cart:
 
