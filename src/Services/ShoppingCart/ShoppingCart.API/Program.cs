@@ -23,6 +23,18 @@ builder.Services.AddMarten(opts =>
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+//builder.Services.AddScoped<IShoppingCartRepository>(provider =>
+//{
+//    var shoppingCartRepo = provider.GetRequiredService<ShoppingCartRepository>();
+//    return new CachedShoppingCartRepository(shoppingCartRepo, provider.GetRequiredService<IDistributedCache>());
+//});
+builder.Services.Decorate<IShoppingCartRepository, CachedShoppingCartRepository>();
+
+builder.Services.AddStackExchangeRedisCache(opts =>
+{
+    opts.Configuration = builder.Configuration.GetConnectionString("Redis");
+    opts.InstanceName = currentAssembly.GetName().Name;
+});
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
