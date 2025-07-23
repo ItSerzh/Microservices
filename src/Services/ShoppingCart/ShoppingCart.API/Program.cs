@@ -18,9 +18,11 @@ builder.Services.AddMediatR(config =>
 builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
-    opts.Schema.For<ShoppingTrolley>().Identity(s => s.Username);
     opts.DisableNpgsqlLogging = true;
+    opts.Schema.For<ShoppingTrolley>().Identity(s => s.Username);
 }).UseLightweightSessions();
+
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
 var app = builder.Build();
 

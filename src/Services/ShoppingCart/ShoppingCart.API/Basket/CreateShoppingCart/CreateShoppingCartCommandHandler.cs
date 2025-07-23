@@ -1,16 +1,17 @@
-﻿
-namespace ShoppingCart.API.Basket.CreateShoppingCart;
+﻿namespace ShoppingCart.API.Basket.CreateShoppingCart;
 
 public record CreateShoppingCartCommand(ShoppingTrolley ShoppingTrolley) : ICommand<CreateShoppingCartResult>;
 
 public record CreateShoppingCartResult(string Username);
 
-public class CreateShoppingCartCommandHandler : ICommandHandler<CreateShoppingCartCommand, CreateShoppingCartResult>
+public class CreateShoppingCartCommandHandler(IShoppingCartRepository repository) : ICommandHandler<CreateShoppingCartCommand, CreateShoppingCartResult>
 {
     public async Task<CreateShoppingCartResult> Handle(CreateShoppingCartCommand command, CancellationToken cancellationToken)
     {
-        var cart = command.ShoppingTrolley;
+        var trolley = command.ShoppingTrolley;
 
-        return new CreateShoppingCartResult("some Username");
+        var result = await repository.CreateShoppingTrolley(trolley, cancellationToken);
+
+        return new CreateShoppingCartResult(result.Username);
     }
 }

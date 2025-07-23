@@ -1,14 +1,15 @@
-﻿
-namespace ShoppingCart.API.Basket.DeleteShoppingCart;
+﻿namespace ShoppingCart.API.Basket.DeleteShoppingCart;
 
 public record DeleteShoppingCartCommand(string Username) : ICommand<DeleteShoppingCartResult>;
 
 public record DeleteShoppingCartResult(bool IsSuccess);
 
-public class DeleteShoppingCartCommandHandler : ICommandHandler<DeleteShoppingCartCommand, DeleteShoppingCartResult>
+public class DeleteShoppingCartCommandHandler(IShoppingCartRepository repository) : ICommandHandler<DeleteShoppingCartCommand, DeleteShoppingCartResult>
 {
     public async Task<DeleteShoppingCartResult> Handle(DeleteShoppingCartCommand request, CancellationToken cancellationToken)
     {
-        return new DeleteShoppingCartResult(true);
+        var result = await repository.DeleteShoppingTroley(request.Username, cancellationToken);
+        
+        return new DeleteShoppingCartResult(result);
     }
 }

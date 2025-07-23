@@ -7,6 +7,7 @@ global using FluentValidation;
 global using Mapster;
 global using Marten;
 global using MediatR;
+global using ShoppingCart.API.Data;
 global using ShoppingCart.API.Exceptinos;
 global using ShoppingCart.API.Models;
 global using System.Reflection;

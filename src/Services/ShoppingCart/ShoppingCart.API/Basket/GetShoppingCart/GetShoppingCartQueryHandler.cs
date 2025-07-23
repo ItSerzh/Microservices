@@ -4,10 +4,12 @@ public record GetShoppingCartQuery(string Username) : IQuery<GetShoppingCartResu
 
 public record GetShoppingCartResult(ShoppingTrolley ShoppingTrolley);
 
-public class GetShoppingCartQueryHandler() : IQueryHandler<GetShoppingCartQuery, GetShoppingCartResult>
+public class GetShoppingCartQueryHandler(IShoppingCartRepository repository) : IQueryHandler<GetShoppingCartQuery, GetShoppingCartResult>
 {
-    public async Task<GetShoppingCartResult> Handle(GetShoppingCartQuery auery, CancellationToken cancellationToken)
+    public async Task<GetShoppingCartResult> Handle(GetShoppingCartQuery query, CancellationToken cancellationToken)
     {
-        return new GetShoppingCartResult(new ShoppingTrolley("someUsername"));
+        var trolley = await repository.GetShoppingTrolley(query.Username, cancellationToken);
+
+        return new GetShoppingCartResult(trolley);
     }
 }
