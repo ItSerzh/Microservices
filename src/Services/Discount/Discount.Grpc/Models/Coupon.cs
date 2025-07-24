@@ -8,5 +8,5 @@ public class Coupon
 
     public string Description { get; set; } = default!;
 
-    public int Amont { get; set; }
+    public int Amount { get; set; }
 }
