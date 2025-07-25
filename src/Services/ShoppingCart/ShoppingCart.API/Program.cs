@@ -1,3 +1,4 @@
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
@@ -9,6 +10,7 @@ var dependencyCatalog = new DependencyContextAssemblyCatalog([
     currentAssembly,
     typeof(IBuildingBlocksMarker).Assembly]);
 
+//Application Services
 builder.Services.AddCarter(dependencyCatalog);
 
 builder.Services.AddMediatR(config =>
@@ -18,6 +20,7 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
+// Data Services
 builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
@@ -39,6 +42,13 @@ builder.Services.AddStackExchangeRedisCache(opts =>
     opts.InstanceName = currentAssembly.GetName().Name;
 });
 
+//Grpc services
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(opts =>
+{
+    opts.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+});
+
+//Cross-Cutting Services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 builder.Services.AddHealthChecks()
