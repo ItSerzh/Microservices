@@ -27,7 +27,12 @@ public class Order : Aggregate<OrderId>
         private set { }
     }
 
-    private static Order Create(OrderId orderId, CustomerId customerId, OrderName orderName, Address shipping, Address billing, Payment payment)
+    public static Order Create(OrderId orderId,
+                               CustomerId customerId,
+                               OrderName orderName,
+                               Address shipping,
+                               Address billing,
+                               Payment payment)
     {
         var order = new Order
         {
@@ -37,7 +42,8 @@ public class Order : Aggregate<OrderId>
             ShippingAddress = shipping,
             BillingAddress = billing,
             Payment = payment,
-            OrderStatus = OrderStatus.Pending
+            OrderStatus = OrderStatus.Pending,
+            CreatedAt = DateTimeOffset.UtcNow
         };
 
         order.AddDomainEvent(new OrderCreatedEvent(order));

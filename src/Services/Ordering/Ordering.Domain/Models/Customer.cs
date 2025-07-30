@@ -6,7 +6,7 @@ public class Customer : Entity<CustomerId>
 
     public string Email { get; private set; } = default!;
 
-    public Customer Create(CustomerId id, string name, string email)
+    public static Customer Create(CustomerId id, string name, string email)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentException.ThrowIfNullOrWhiteSpace(email);
@@ -15,7 +15,8 @@ public class Customer : Entity<CustomerId>
         {
             Id = id,
             Name = name,
-            Email = email
+            Email = email,
+            CreatedAt = DateTimeOffset.UtcNow
         };
 
         return customer;

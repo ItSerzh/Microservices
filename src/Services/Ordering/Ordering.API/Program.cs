@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 // services here
@@ -8,5 +9,11 @@ builder.Services.AddApplicationServices()
 var app = builder.Build();
 
 //  HTTP pipeline here
+app.UseApiServices();
+
+if (app.Environment.IsDevelopment())
+{
+    await app.InitialiseDatabseAsync();
+}
 
 app.Run();

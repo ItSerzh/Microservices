@@ -2,7 +2,7 @@
 
 public class Product : Entity<ProductId>
 {
-    public static Product Create(ProductId productId, string name, int price)
+    public static Product Create(ProductId productId, string name, decimal price)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
@@ -11,7 +11,8 @@ public class Product : Entity<ProductId>
         {
             Id = productId,
             Name = name,
-            Price = price
+            Price = price,
+            CreatedAt = DateTimeOffset.UtcNow
         };
 
         return product;
@@ -19,6 +20,6 @@ public class Product : Entity<ProductId>
 
     public string Name { get; private set; } = default!;
 
-    public int Price { get; private set; }
+    public decimal Price { get; private set; }
 }
 
