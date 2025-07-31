@@ -51,12 +51,13 @@ public class Order : Aggregate<OrderId>
         return order;
     }
 
-    public void Update(CustomerId customerId, OrderName orderName, Address shipping, Address billing, Payment payment)
+    public void Update(CustomerId customerId, OrderName orderName, Address shipping, Address billing, Payment payment, OrderStatus orderStatus)
     {
         OrderName = orderName;
         ShippingAddress = shipping;
         BillingAddress = billing;
         Payment = payment;
+        OrderStatus = orderStatus;
 
         AddDomainEvent(new OrderUpdatedEvent(this));
     }

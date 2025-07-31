@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Ordering.Domain.Models;
+﻿using Ordering.Application.Data;
 using System.Reflection;
 
 namespace Ordering.Infrastructure.Data;
 
-internal class OrderingContext(DbContextOptions<OrderingContext> options) : DbContext(options)
+internal class OrderingContext(DbContextOptions<OrderingContext> options) : DbContext(options), IOrderingDbContext
 {
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<Product> Products => Set<Product>();

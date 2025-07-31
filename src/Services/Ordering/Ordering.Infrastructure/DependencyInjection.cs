@@ -1,5 +1,7 @@
 ﻿global using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Ordering.Application.Data;
+using Ordering.Infrastructure.Data.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +19,8 @@ public static class DependencyInjection
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
             options.UseSqlServer(connectionString);
         });
+
+        services.AddScoped<IOrderingDbContext, OrderingContext>();
 
         return services;
     }
