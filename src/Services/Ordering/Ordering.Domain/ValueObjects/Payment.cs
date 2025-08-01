@@ -8,7 +8,7 @@ public record Payment
 
     public string Expiration { get; } = default!;
 
-    public string CVV { get; } = default!;
+    public string Cvv { get; } = default!;
 
     public int PaymentMethod { get; } = default!;
 
@@ -22,7 +22,7 @@ public record Payment
         CardName = cardName;
         CardNumber = cardNumber;
         Expiration = expiration;
-        CVV = cvv;
+        Cvv = cvv;
         PaymentMethod = paymentMethod;
     }
 

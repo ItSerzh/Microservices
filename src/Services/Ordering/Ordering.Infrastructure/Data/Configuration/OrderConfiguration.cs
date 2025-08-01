@@ -105,7 +105,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
                 .HasMaxLength(10)
                 .IsRequired();
 
-                paymnetBuilder.Property(p => p.CVV)
+                paymnetBuilder.Property(p => p.Cvv)
                 .HasMaxLength(3)
                 .IsRequired();
 
