@@ -22,7 +22,7 @@ public class CreateShoppingCartEndpoint : ICarterModule
             .WithName("CreateShoppingCart")
             .Produces<CreateShoppingCartResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)
-            .WithName("Create Shopping Cart")
+            .WithDisplayName("Create Shopping Cart")
             .WithDescription("Create Shopping Cart");
     }
 }
