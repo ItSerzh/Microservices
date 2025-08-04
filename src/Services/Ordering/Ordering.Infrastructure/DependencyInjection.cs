@@ -1,7 +1,6 @@
-﻿global using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Ordering.Application.Data;
-using Ordering.Infrastructure.Data.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
