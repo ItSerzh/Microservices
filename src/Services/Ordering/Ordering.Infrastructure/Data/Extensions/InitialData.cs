@@ -43,8 +43,8 @@ internal class InitialData
                 billing: address2,
                 payment2);
 
-            order1.Add(ProductId.Of(new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e916")), 2, 1050m);
-            order1.Add(ProductId.Of(new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e915")), 1, 1100m);
+            order2.Add(ProductId.Of(new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e916")), 2, 1050m);
+            order2.Add(ProductId.Of(new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e915")), 1, 1100m);
 
             return [order1, order2];
         }

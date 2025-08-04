@@ -7,9 +7,9 @@ public class GetOrdersByNameHandler(IOrderingDbContext dbContext) : IQueryHandle
         var orders = await dbContext.Orders
             .Include(o => o.OrderItems)
             .Where(o => o.OrderName.Value.Contains(query.OrderName))
-            .OrderBy(o => o.OrderName)
+            .OrderBy(o => o.OrderName.Value)
             .AsNoTracking()
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
 
         var orderDtos = orders.ToOrderDto();
 

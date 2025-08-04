@@ -6,7 +6,7 @@ public class GetOrdersByCustomerHandler(IOrderingDbContext dbContext) : IQueryHa
     {
         var orders = await dbContext.Orders
             .Include(o => o.OrderItems)
-            .Where(o => o.CustomerId.Value == query.CustomerId)
+            .Where(o => o.CustomerId == CustomerId.Of(query.CustomerId))
             .OrderByDescending(o => o.CreatedAt)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
