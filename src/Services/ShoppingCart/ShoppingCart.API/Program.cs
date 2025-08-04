@@ -1,3 +1,4 @@
+using BuildingBlocks.Extensions;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -6,12 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // services here
 var currentAssembly = Assembly.GetExecutingAssembly();
-var dependencyCatalog = new DependencyContextAssemblyCatalog([
-    currentAssembly,
-    typeof(IBuildingBlocksMarker).Assembly]);
 
 //Application Services
-builder.Services.AddCarter(dependencyCatalog);
+builder.Services.AddCarterForAssembly(currentAssembly);
 
 builder.Services.AddMediatR(config =>
 {
