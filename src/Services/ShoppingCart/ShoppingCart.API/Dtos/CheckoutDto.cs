@@ -1,12 +1,12 @@
-﻿namespace BuildingBlocks.Messaging.Events;
+﻿namespace ShoppingCart.API.Dtos;
 
-public record ShoppingCartCheckoutEvent : IntegrationEvent
+public class CheckoutDto
 {
     public string Username { get; set; } = default!;
 
     public Guid CustomerId { get; set; }
 
-    public decimal TotalPrice { get; set; }
+    public decimal Price { get; set; }
 
     //Shipping, Billing
     public string FirstName { get; } = default!;
@@ -34,4 +34,3 @@ public record ShoppingCartCheckoutEvent : IntegrationEvent
 
     public int PaymentMethod { get; } = default!;
 }
-

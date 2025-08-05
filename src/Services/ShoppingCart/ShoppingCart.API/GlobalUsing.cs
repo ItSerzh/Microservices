@@ -1,5 +1,4 @@
-﻿global using BuildingBlocks;
-global using BuildingBlocks.Behaviors;
+﻿global using BuildingBlocks.Behaviors;
 global using BuildingBlocks.CQRS;
 global using BuildingBlocks.Exceptions;
 global using BuildingBlocks.Exceptions.Handler;
@@ -9,6 +8,7 @@ global using Mapster;
 global using Marten;
 global using MediatR;
 global using ShoppingCart.API.Data;
+global using ShoppingCart.API.Dtos;
 global using ShoppingCart.API.Exceptinos;
 global using ShoppingCart.API.Models;
 global using System.Reflection;
