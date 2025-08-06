@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Behaviors;
 using Microsoft.Extensions.Configuration;
+using Microsoft.FeatureManagement;
 using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ public static class DependencyInjection
             cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
         });
 
+        services.AddFeatureManagement();
         services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
 
         return services;
