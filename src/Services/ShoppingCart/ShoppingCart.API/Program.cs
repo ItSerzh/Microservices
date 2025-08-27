@@ -1,7 +1,6 @@
 using BuildingBlocks.Extensions;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
-using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +23,8 @@ builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
     opts.DisableNpgsqlLogging = true;
-    opts.Schema.For<ShoppingTrolley>().Identity(s => s.Username);
+    // for now we use Id as identity and it works auotmatically
+    //opts.Schema.For<ShoppingTrolley>().Identity(s => s.Username);
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();

@@ -10,18 +10,18 @@ public class ShoppingCartRepository(IDocumentSession documentSession) : IShoppin
         return shoppingTrolley;
     }
 
-    public async Task<bool> DeleteShoppingTroley(string username, CancellationToken cancellationToken)
+    public async Task<bool> DeleteShoppingTroley(Guid userId, CancellationToken cancellationToken)
     {
-        documentSession.Delete<ShoppingTrolley>(username);
+        documentSession.Delete<ShoppingTrolley>(userId);
         await documentSession.SaveChangesAsync(cancellationToken);
         
         return true;
     }
 
-    public async Task<ShoppingTrolley> GetShoppingTrolley(string username, CancellationToken cancellationToken)
+    public async Task<ShoppingTrolley> GetShoppingTrolley(Guid userId, CancellationToken cancellationToken)
     {
-        var shoppingCart = await documentSession.LoadAsync<ShoppingTrolley>(username, cancellationToken);
+        var shoppingCart = await documentSession.LoadAsync<ShoppingTrolley>(userId, cancellationToken);
         
-        return shoppingCart ?? throw new ShoppingTrolleyNotFoundException(username);
+        return shoppingCart ?? throw new ShoppingTrolleyNotFoundException(userId.ToString());
     }
 }

@@ -9,9 +9,9 @@ public class DeleteShoppingCartEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapDelete("/shopping-cart/{username}", async (string username, IMediator mediator) =>
+        app.MapDelete("/shopping-cart/{userId}", async (Guid userId, IMediator mediator) =>
         {
-            var result = await mediator.Send(new DeleteShoppingCartCommand(username));
+            var result = await mediator.Send(new DeleteShoppingCartCommand(userId));
 
             var response = result.Adapt<DeleteShoppingCartResponce>();
 

@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.Messaging.Dtos;
-using ShoppingCart.API.Enums;
+using BuildingBlocks.Messaging.Enums;
 
 namespace ShoppingCart.API.Dtos;
 

@@ -8,9 +8,9 @@ public class GetShoppingCartEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/shopping-cart/{username}", async (string username, ISender sender) =>
+        app.MapGet("/shopping-cart/{userId}", async (Guid userId, ISender sender) =>
         {
-            var result = await sender.Send(new GetShoppingCartQuery(username));
+            var result = await sender.Send(new GetShoppingCartQuery(userId));
 
             var response = result.Adapt<GetShoppingCartResponse>();
 

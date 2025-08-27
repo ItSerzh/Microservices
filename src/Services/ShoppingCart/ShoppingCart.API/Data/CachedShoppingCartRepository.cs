@@ -14,26 +14,26 @@ public class CachedShoppingCartRepository(IShoppingCartRepository repository, ID
         return shoppingTrolley;
     }
 
-    public async Task<bool> DeleteShoppingTroley(string username, CancellationToken cancellationToken)
+    public async Task<bool> DeleteShoppingTroley(Guid userId, CancellationToken cancellationToken)
     {
-        await repository.DeleteShoppingTroley(username, cancellationToken);
+        await repository.DeleteShoppingTroley(userId, cancellationToken);
 
-        await cache.RemoveAsync(username, cancellationToken);
+        await cache.RemoveAsync(userId.ToString(), cancellationToken);
 
         return true;
     }
 
-    public async Task<ShoppingTrolley> GetShoppingTrolley(string username, CancellationToken cancellationToken)
+    public async Task<ShoppingTrolley> GetShoppingTrolley(Guid userId, CancellationToken cancellationToken)
     {
-        var cachedString = await cache.GetStringAsync(username, cancellationToken);
+        var cachedString = await cache.GetStringAsync(userId.ToString(), cancellationToken);
 
         if (!string.IsNullOrEmpty(cachedString))
         {
             return JsonSerializer.Deserialize<ShoppingTrolley>(cachedString)!;
         }
 
-        var trolley = await repository.GetShoppingTrolley(username, cancellationToken);
-        await cache.SetStringAsync(username, JsonSerializer.Serialize(trolley), cancellationToken);
+        var trolley = await repository.GetShoppingTrolley(userId, cancellationToken);
+        await cache.SetStringAsync(userId.ToString(), JsonSerializer.Serialize(trolley), cancellationToken);
 
         return trolley;
     }

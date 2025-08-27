@@ -2,9 +2,9 @@
 
 public interface IShoppingCartRepository
 {
-    Task<ShoppingTrolley> GetShoppingTrolley(string username, CancellationToken cancellationToken);
+    Task<ShoppingTrolley> GetShoppingTrolley(Guid userId, CancellationToken cancellationToken);
     
     Task<ShoppingTrolley> CreateShoppingTrolley(ShoppingTrolley shoppingTrolley, CancellationToken cancellationToken);
 
-    Task<bool> DeleteShoppingTroley(string username, CancellationToken cancellationToken);
+    Task<bool> DeleteShoppingTroley(Guid userId, CancellationToken cancellationToken);
 }

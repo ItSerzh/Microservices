@@ -2,6 +2,8 @@
 
 public class ShoppingTrolley
 {
+    public Guid Id { get; set; }
+
     public string Username { get; set; }
 
     public List<ShoppingTrolleyItem> Items { get; set; } = [];

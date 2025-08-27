@@ -4,6 +4,6 @@ public class DeleteShoppingCartCommandValidator : AbstractValidator<DeleteShoppi
 {
     public DeleteShoppingCartCommandValidator()
     {
-        RuleFor(c => c.Username).NotEmpty().WithMessage("Username is requred");
+        RuleFor(c => c.UserId).NotEmpty().WithMessage("UserId is requred");
     }
 }

@@ -12,7 +12,7 @@ public class CreateOrderHandler(IOrderingDbContext dbContext) : ICommandHandler<
         return new CreateOrderResult(order.Id.Value);
     }
 
-    private Order CreatNewOrder(OrderDto order)
+    private static Order CreatNewOrder(OrderDto order)
     {
         var shipping = Address.Off(order.Shipping.FirstName,
                                    order.Shipping.LastName,
