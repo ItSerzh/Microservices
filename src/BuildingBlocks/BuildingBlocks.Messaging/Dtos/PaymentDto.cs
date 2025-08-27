@@ -1,9 +1,7 @@
-﻿namespace Ordering.Application.Dtos;
-
+﻿namespace BuildingBlocks.Messaging.Dtos;
 public record PaymentDto(
     string? CardName,
     string CardNumber,
     string Expiration,
     string Cvv,
     int PaymentMethod);
-

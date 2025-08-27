@@ -1,4 +1,6 @@
-﻿namespace Ordering.Application.Extensions;
+﻿using BuildingBlocks.Messaging.Dtos;
+
+namespace Ordering.Application.Extensions;
 
 public static class OrderExtensions
 {

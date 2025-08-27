@@ -1,36 +1,17 @@
-﻿namespace ShoppingCart.API.Dtos;
+﻿using BuildingBlocks.Messaging.Dtos;
+using ShoppingCart.API.Enums;
 
-public class CheckoutDto
+namespace ShoppingCart.API.Dtos;
+
+public record CheckoutDto
 {
-    public string Username { get; set; } = default!;
+    public Guid Id { get; init; }
+    public Guid CustomerId { get; init; }
+    public string OrderName { get; init; }
+    public AddressDto Shipping { get; init; }
+    public AddressDto Billing { get; init; }
+    public PaymentDto Payment { get; init; }
+    public OrderStatus Status { get; init; }
 
-    public Guid CustomerId { get; set; }
-
-    public decimal Price { get; set; }
-
-    //Shipping, Billing
-    public string FirstName { get; } = default!;
-
-    public string LastName { get; } = default!;
-
-    public string? EmailAddress { get; }
-
-    public string AddressLine { get; } = default!;
-
-    public string Contry { get; } = default!;
-
-    public string State { get; } = default!;
-
-    public string ZipCode { get; } = default!;
-
-    //Payment
-    public string? CardName { get; } = default!;
-
-    public string CardNumber { get; } = default!;
-
-    public string Expiration { get; } = default!;
-
-    public string Cvv { get; } = default!;
-
-    public int PaymentMethod { get; } = default!;
+    public List<OrderItemDto> OrderItems = [];
 }

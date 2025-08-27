@@ -1,4 +1,4 @@
-﻿namespace Ordering.Domain.Enums;
+﻿namespace BuildingBlocks.Messaging.Enums;
 
 public enum OrderStatus
 {

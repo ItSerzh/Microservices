@@ -1,4 +1,5 @@
-﻿using Ordering.Domain.Enums;
+﻿using BuildingBlocks.Messaging.Dtos;
+using Ordering.Domain.Enums;
 
 namespace Ordering.Application.Dtos;
 
